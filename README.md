@@ -8,7 +8,7 @@ docker-start
 
 `docker image ls`
 
-## Deleting the specifing docker iamge
+## Deleting docker image
 
 `docker rm <image id> `
 
@@ -37,7 +37,9 @@ docker-start
 
 ## Syncing the local code with docker container
 
-`docker run -v <linux/mac:$(pwd) | windows cmd: %cd% | powershell: ${pwd}>:<workdir> -p 3000:3000 --name <container id> <image id>`
+- ro after specifying the volumes means read only to preventing the creation of new files from docker container
+
+`docker run -v <linux/mac:$(pwd) | windows cmd: %cd% | powershell: ${pwd}>:<workdir>:ro -p 3000:3000 --name <container id> <image id>`
 
 - example:
 `docker run -v %cd%:/src -v /src/node_modules -p 3000:3000 -d --name node-app node-app-image`
