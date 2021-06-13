@@ -2,15 +2,24 @@ docker-start
 
 ## Building the docker image with the name `node-app-image`
 
-`docker build -t node-app-image`
+`docker build -t node-app-image .`
 
-## Listing docker images
+## Listing docker images/volumes
 
 `docker image ls`
+`docker volume ls`
 
-## Deleting docker image
+- deleting volumes
+`docker volume prune`
 
+## Deleting docker image, container, volume
+ 
+- image:
 `docker rm <image id> `
+-container:
+`docker rm <container id> -f`
+volume with container:
+`docker rm <container id> -fv`
 
 ## Runnig the docker container
 - -d flag means detached mode so you can run the docker cli
@@ -39,7 +48,14 @@ docker-start
 
 - ro after specifying the volumes means read only to preventing the creation of new files from docker container
 
-`docker run -v <linux/mac:$(pwd) | windows cmd: %cd% | powershell: ${pwd}>:<workdir>:ro -p 3000:3000 --name <container id> <image id>`
+`docker run -v <linux/mac:$(pwd) | windows cmd: %cd% | powershell: ${pwd}>:<workdir>:ro -p 3000:3000 -d --name <container id> <image id>`
 
 - example:
-`docker run -v %cd%:/src -v /src/node_modules -p 3000:3000 -d --name node-app node-app-image`
+- with ENV vars not in file
+`docker run -v %cd%:/src:ro -v /src/node_modules --env PORT=4000 -p 3000:4000 -d --name node-app node-app-image`
+- ENV vars within the .env file
+`docker run -v %cd%:/src:ro -v /src/node_modules --env-file ./.env -p 3000:4000 -d --name node-app node-app-image`
+
+- for printing env vars in exec bash mode:
+`docker exec -it <container id> bash`
+`printenv`
