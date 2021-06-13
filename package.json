@@ -1,0 +1,30 @@
+{
+  "name": "docker-start",
+  "version": "1.0.0",
+  "description": "docker-start",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js -e js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamm3e3333/docker-start.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamm3e3333/docker-start/issues"
+  },
+  "homepage": "https://github.com/jamm3e3333/docker-start#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.6.9",
+    "mongoose": "^5.12.13",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
