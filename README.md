@@ -23,8 +23,8 @@ volume with container:
 
 ## Runnig the docker container
 - -d flag means detached mode so you can run the docker cli
-- 1st 3000 is traffic coming from the internet
-- 2nd 3000 is container's port on the local network
+- 1st 3000 is traffic coming from the internet (left)
+- 2nd 3000 is container's port on the local network (right)
 
 `docker run -p 3000:3000 -d --name <container id> <image id>`
 

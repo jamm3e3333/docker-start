@@ -9,7 +9,6 @@ app.get("/", (req, res) => {
     <h2>My name is Jeff!</h2>
     <h2>Hi Jeff how are you?</h2>
     <h3>I'm fine thanks</h3>
-    <h3>I'm fine thanks</h3>
     `);
 });
 
