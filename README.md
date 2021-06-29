@@ -80,3 +80,6 @@ for dev:
 
 for prod:
 `docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d`
+
+logging into the mongodb:
+`docker exec -it <name of the container> <name of the db> mongo -u "<user>" -p "<password>"`
