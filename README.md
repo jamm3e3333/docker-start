@@ -59,3 +59,24 @@ volume with container:
 - for printing env vars in exec bash mode:
 `docker exec -it <container id> bash`
 `printenv`
+
+# Docker compose
+- running the docker compose file:
+(-d detached mode -> using cli)
+`docker-compose up -d`
+- killing the docker compose file (-v with the volumes)
+`docker-compose down -v`
+
+When changing something in the app the image needs to be build again
+`docker-compose up -d --build`
+
+3 docker compose files
+- 1st for sharing the setting between dev and prod
+- 2nd the developing compose file
+- 3rd the prod compose file
+
+for dev:
+`docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d`
+
+for prod:
+`docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d`

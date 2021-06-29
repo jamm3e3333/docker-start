@@ -1,0 +1,11 @@
+version : "3"
+services: #every docker conatiner is a service
+    node-app: #name of the docker container (could be a db)
+        build: .
+        ports:
+            - "3000:3000"
+        volumes:
+            - ./:/src
+            - /src/node_modules
+        env_file: 
+            - ./.env
