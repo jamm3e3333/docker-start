@@ -4,7 +4,8 @@ services:
         build: .
         ports:
             - "3000:3000"
-
+        depends_on: #mongo is gonna start 1st
+            - mongo
     mongo:
         image: mongo
         environment: 
