@@ -5,7 +5,7 @@ services:
         ports:
             - "3000:3000"
 
-    mongodb:
+    mongo:
         image: mongo
         environment: 
             - MONGO_INITDB_ROOT_USERNAME=jamm3e3333 

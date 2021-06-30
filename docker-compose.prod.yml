@@ -8,5 +8,5 @@ services:
         environment: 
             - NODE_ENV=production
         env_file:
-            - ./prod.env
+            - ./config/prod.env
         command: node index.js

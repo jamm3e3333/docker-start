@@ -2,21 +2,11 @@ const express = require("express");
 const mongoose = require('mongoose');
 const Book = require('./src/models/books');
 const app = express();
+require('./src/db/mongodb');
 
 const port = process.env.PORT;
 
 app.use(express.json());
-
-mongoose.connect(process.env.DB_CON,{
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true
-})
-.then(() => {console.log("Connected succesfully")})
-.catch((e) => {
-    console.log(e);
-});
 
 app.get("/", (req, res) => {
     res.send(`

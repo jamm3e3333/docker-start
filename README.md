@@ -40,6 +40,8 @@ volume with container:
 
 `docker logs <container id>`
 
+- -f to follow the log
+
 ## Listing the docker containers
 
 `docker ps`
@@ -83,3 +85,13 @@ for prod:
 
 logging into the mongodb:
 `docker exec -it <name of the container> <name of the db> mongo -u "<user>" -p "<password>"`
+
+# Network and connection between containers
+- getting the settings of the container
+`docker inspect <docker container>`
+
+- getting the network settings of containers
+`docker network ls`
+
+- inspecting the specific network
+`docker network inspect <docker network>`
