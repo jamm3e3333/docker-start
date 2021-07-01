@@ -1,13 +1,12 @@
 const express = require("express");
-const mongoose = require('mongoose');
-const Book = require('./src/models/books');
 const app = express();
+const routerPost = require("./src/routers/post");
 require('./src/db/mongodb');
-
 
 const port = process.env.PORT;
 
 app.use(express.json());
+app.use(routerPost);
 
 app.get("/", (req, res) => {
     res.send(`
@@ -18,25 +17,6 @@ app.get("/", (req, res) => {
     <h3>I'm fine thanks</h3>
     `);
 });
-
-app.post('/books/create', async (req, res) => {
-    try{
-        const book = new Book(req.body);
-        if(!book) {
-            res.status(400)
-                .send("Empty body!");
-        }
-
-        await book.save(book);
-        res.status(201)
-            .send(book);
-
-    }
-    catch(e){
-        res.status(400)
-            .send({Error: e.message});
-    }
-})
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
