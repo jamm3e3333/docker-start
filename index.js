@@ -1,12 +1,15 @@
 const express = require("express");
 const app = express();
 const routerPost = require("./src/routers/post");
+const routerUser = require("./src/routers/user");
+
 require('./src/db/mongodb');
 
 const port = process.env.PORT;
 
 app.use(express.json());
 app.use(routerPost);
+app.use(routerUser);
 
 app.get("/", (req, res) => {
     res.send(`
