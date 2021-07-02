@@ -19,3 +19,4 @@ services:
         environment: 
             - MONGO_INITDB_ROOT_USERNAME=jamm3e3333 
             - MONGO_INITDB_ROOT_PASSWORD=ahoj123
+ 

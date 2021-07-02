@@ -80,6 +80,11 @@ When changing something in the app the image needs to be build again
 for dev:
 `docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d`
 
+for already running services to rebuild and renew anon volumes
+`docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build --renew-anon-volumes`
+
+`docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build -V`
+
 for prod:
 `docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d`
 
@@ -97,3 +102,7 @@ logging into the mongodb:
 
 - inspecting the specific network
 `docker network inspect <docker network>`
+
+# Installing the redis and express session
+
+`npm i redis connect-redis express-session`

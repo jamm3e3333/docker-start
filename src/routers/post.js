@@ -1,9 +1,10 @@
 const Post = require('../models/post');
 const express = require('express');
+const auth = require('../middleware/auth');
 const router = new express.Router();
 
 //CREATING A POST
-router.post('/posts/create', async (req, res) => {
+router.post('/posts/create', auth, async (req, res) => {
     try{
         if(!req.body) {
             return res.status(400)
@@ -21,7 +22,7 @@ router.post('/posts/create', async (req, res) => {
 });
 
 //LISTING ONE POST
-router.get('/posts/list', async(req, res) => {
+router.get('/posts/list', auth, async(req, res) => {
     try{
         if(!req.query.title) {
             return res.status(400)
@@ -42,7 +43,7 @@ router.get('/posts/list', async(req, res) => {
 })
 
 //LISTING ALL THE POSTS
-router.get('/posts/list/all', async (req, res) => {
+router.get('/posts/list/all', auth, async (req, res) => {
     const sort = {};
     
     try{
@@ -65,7 +66,7 @@ router.get('/posts/list/all', async (req, res) => {
 });
 
 //UPDATING POST
-router.patch('/posts/update', async (req, res) => {
+router.patch('/posts/update', auth, async (req, res) => {
     try{
         const updatesAllowed = ['title', 'body'];
         const updates = Object.keys(req.body);
@@ -108,7 +109,7 @@ router.patch('/posts/update', async (req, res) => {
 });
 
 //DELETING POST
-router.delete('/posts/delete', async(req, res) => {
+router.delete('/posts/delete', auth, async(req, res) => {
     try{
         if(!req.query.title) {
             return res.status(400)

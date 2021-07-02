@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require('../models/user');
+const auth = require('../middleware/auth');
 const router = new express.Router();
 
 //CREATING A USER
@@ -15,6 +16,7 @@ router.post('/users/create', async (req, res) => {
                 return res.status(400)
                             .send({Error: error.message});
             }
+            req.session.user = data;
             res.status(201)
                 .send(data);
         });
@@ -35,18 +37,20 @@ router.post('/users/login', async (req, res) => {
                         .send("Unable to login.");
         }
         const { name, password } = req.body;
+        
         const user = await User.findByCredentials(name, password);
+        req.session.user = user;
         res.status(200)
             .send(user);
     }
     catch(e) {
-        res.status(400)
-            .send("Invalid credentials.");
+        res.status(401)
+            .send({Error: e.message});
     }
 })
 
 //LISTING A USER
-router.get('/users/list', async (req, res) => {
+router.get('/users/list', auth,async (req, res) => {
     const name = req.query.name;
     try{
         if(!name) {
@@ -73,7 +77,7 @@ router.get('/users/list', async (req, res) => {
 })
 
 //LISTING ALL USERS
-router.get('/users/list/all/', async (req, res) => {
+router.get('/users/list/all/', auth, async (req, res) => {
     const sort = {};
 
     try{
@@ -99,7 +103,7 @@ router.get('/users/list/all/', async (req, res) => {
 });
 
 //UPDATE A USER
-router.patch('/users/update', async (req, res) => {
+router.patch('/users/update', auth, async (req, res) => {
     const updatesAllowed = ['name','password'];
     const updates = Object.keys(req.body);
     const name = req.query.name;
@@ -150,7 +154,7 @@ router.patch('/users/update', async (req, res) => {
 });
 
 //DELETING A USER
-router.delete('/users/delete', async (req, res) => {
+router.delete('/users/delete', auth, async (req, res) => {
     try{
         const name = req.query.name;
         if(!name) {

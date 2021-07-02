@@ -1,12 +1,35 @@
 const express = require("express");
+const session = require("express-session");
+const redis = require("redis");
+const { redisUrl, redisPort, redisSecret } = require('./config/config');
 const app = express();
 const routerPost = require("./src/routers/post");
 const routerUser = require("./src/routers/user");
+
+
+let RedisStore = require("connect-redis")(session);
+let redisClient = redis.createClient({
+    host: redisUrl,
+    port: redisPort
+});
 
 require('./src/db/mongodb');
 
 const port = process.env.PORT;
 
+app.use(session({
+    store: new RedisStore({
+        client: redisClient
+    }),
+    secret: redisSecret,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        secure: false,
+        httpOnly: true,
+        maxAge: 3000000
+    } 
+}))
 app.use(express.json());
 app.use(routerPost);
 app.use(routerUser);

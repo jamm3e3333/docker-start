@@ -6,6 +6,7 @@ services:
             - "3000:3000"
         depends_on: #mongo is gonna start 1st
             - mongo
+            - redis
     mongo:
         image: mongo
         environment: 
@@ -14,5 +15,8 @@ services:
         volumes:
             - mongo-db:/data/db
 
+    redis:
+        image: redis
+        
 volumes:
     mongo-db:
