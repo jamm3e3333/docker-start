@@ -27,6 +27,24 @@ router.post('/users/create', async (req, res) => {
     
 });
 
+//LOGIN USER
+router.post('/users/login', async (req, res) => {
+    try{
+        if(!req.body) {
+            return res.status(400)
+                        .send("Unable to login.");
+        }
+        const { name, password } = req.body;
+        const user = await User.findByCredentials(name, password);
+        res.status(200)
+            .send(user);
+    }
+    catch(e) {
+        res.status(400)
+            .send("Invalid credentials.");
+    }
+})
+
 //LISTING A USER
 router.get('/users/list', async (req, res) => {
     const name = req.query.name;

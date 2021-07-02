@@ -42,8 +42,8 @@ userSchema.statics.findByCredentials = async (name, password) => {
         throw new Error("Invalid name or password.");
     }
 
-    const isValidation = await bcrypt.compare(user.password, password);
-    if(!isValdiation) {
+    const isValidation = await bcrypt.compare(password, user.password);
+    if(!isValidation) {
         throw new Error("Invalid name or password.");
     }
     return user;
