@@ -129,6 +129,33 @@ router.patch('/users/update', async (req, res) => {
             .send({Error: e.message});
     }
 
-})
+});
+
+//DELETING A USER
+router.delete('/users/delete', async (req, res) => {
+    try{
+        const name = req.query.name;
+        if(!name) {
+            return res.status(400)
+                        .send("The name must be specified.");
+        }
+        await User.deleteOne({name}, (error, data) => {
+            if(error) {
+                return res.status(400)
+                            .send({Error: error.message});
+            }
+            if(!data.deletedCount) {
+                return res.status(400)
+                            .send("The user doesn\'t exist.");
+            }
+            res.status(200)
+                .send("User deleted.");
+        })
+    }
+    catch(e) {
+        res.status(400)
+            .send({Error: e.message});
+    }
+});
 
 module.exports = router;
