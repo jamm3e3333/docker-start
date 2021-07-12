@@ -106,3 +106,9 @@ logging into the mongodb:
 # Installing the redis and express session
 
 `npm i redis connect-redis express-session`
+
+# Scaling the app
+
+- adding two instances of the node app
+
+`docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --scale <docker container>=2`

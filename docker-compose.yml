@@ -11,7 +11,6 @@ services:
         depends_on: #mongo is gonna start 1st
             - mongo
             - redis
-            - nginx
     mongo:
         image: mongo
         environment: 
