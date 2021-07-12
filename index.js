@@ -34,7 +34,7 @@ app.use(express.json());
 app.use(routerPost);
 app.use(routerUser);
 
-app.get("/", (req, res) => {
+app.get("/api/v1", (req, res) => {
     res.send(`
     <h1>Hello world</h1>
     <h2>My name is Jeff!</h2>

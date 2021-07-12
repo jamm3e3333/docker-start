@@ -4,7 +4,7 @@ const auth = require('../middleware/auth');
 const router = new express.Router();
 
 //CREATING A USER
-router.post('/users/create', async (req, res) => {
+router.post('/api/v1/users/create', async (req, res) => {
     const user = new User(req.body);
     try{
         if(!user) {
@@ -30,7 +30,7 @@ router.post('/users/create', async (req, res) => {
 });
 
 //LOGIN USER
-router.post('/users/login', async (req, res) => {
+router.post('/api/v1/users/login', async (req, res) => {
     try{
         if(!req.body) {
             return res.status(400)
@@ -50,7 +50,7 @@ router.post('/users/login', async (req, res) => {
 })
 
 //LISTING A USER
-router.get('/users/list', auth, async (req, res) => {
+router.get('/api/v1/users/list', auth, async (req, res) => {
     const name = req.query.name;
     try{
         if(!name) {
@@ -77,7 +77,7 @@ router.get('/users/list', auth, async (req, res) => {
 })
 
 //LISTING ALL USERS
-router.get('/users/list/all/', auth, async (req, res) => {
+router.get('/api/v1/users/list/all/', auth, async (req, res) => {
     const sort = {};
 
     try{
@@ -103,7 +103,7 @@ router.get('/users/list/all/', auth, async (req, res) => {
 });
 
 //UPDATE A USER
-router.patch('/users/update', auth, async (req, res) => {
+router.patch('/api/v1/users/update', auth, async (req, res) => {
     const updatesAllowed = ['name','password'];
     const updates = Object.keys(req.body);
     const name = req.query.name;
@@ -154,7 +154,7 @@ router.patch('/users/update', auth, async (req, res) => {
 });
 
 //DELETING A USER
-router.delete('/users/delete', auth, async (req, res) => {
+router.delete('/api/v1/users/delete', auth, async (req, res) => {
     try{
         const name = req.query.name;
         if(!name) {

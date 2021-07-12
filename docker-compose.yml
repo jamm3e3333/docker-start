@@ -1,9 +1,11 @@
 version: "3"
 services: 
+    nginx:
+        image: nginx:stable-alpine
+        ports:
+            - "3000:80"
     node-app:
         build: .
-        ports:
-            - "3000:3000"
         depends_on: #mongo is gonna start 1st
             - mongo
             - redis

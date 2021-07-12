@@ -4,7 +4,7 @@ const auth = require('../middleware/auth');
 const router = new express.Router();
 
 //CREATING A POST
-router.post('/posts/create', auth, async (req, res) => {
+router.post('/api/v1/posts/create', auth, async (req, res) => {
     try{
         if(!req.body) {
             return res.status(400)
@@ -22,7 +22,7 @@ router.post('/posts/create', auth, async (req, res) => {
 });
 
 //LISTING ONE POST
-router.get('/posts/list', auth, async(req, res) => {
+router.get('/api/v1/posts/list', auth, async(req, res) => {
     try{
         if(!req.query.title) {
             return res.status(400)
@@ -43,7 +43,7 @@ router.get('/posts/list', auth, async(req, res) => {
 })
 
 //LISTING ALL THE POSTS
-router.get('/posts/list/all', auth, async (req, res) => {
+router.get('/api/v1/posts/list/all', auth, async (req, res) => {
     const sort = {};
     
     try{
@@ -66,7 +66,7 @@ router.get('/posts/list/all', auth, async (req, res) => {
 });
 
 //UPDATING POST
-router.patch('/posts/update', auth, async (req, res) => {
+router.patch('/api/v1/posts/update', auth, async (req, res) => {
     try{
         const updatesAllowed = ['title', 'body'];
         const updates = Object.keys(req.body);
@@ -109,7 +109,7 @@ router.patch('/posts/update', auth, async (req, res) => {
 });
 
 //DELETING POST
-router.delete('/posts/delete', auth, async(req, res) => {
+router.delete('/api/v1/posts/delete', auth, async(req, res) => {
     try{
         if(!req.query.title) {
             return res.status(400)
