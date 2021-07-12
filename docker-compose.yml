@@ -4,11 +4,14 @@ services:
         image: nginx:stable-alpine
         ports:
             - "3000:80"
+        volumes:
+            - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
     node-app:
         build: .
         depends_on: #mongo is gonna start 1st
             - mongo
             - redis
+            - nginx
     mongo:
         image: mongo
         environment: 
