@@ -50,7 +50,7 @@ router.post('/users/login', async (req, res) => {
 })
 
 //LISTING A USER
-router.get('/users/list', auth,async (req, res) => {
+router.get('/users/list', auth, async (req, res) => {
     const name = req.query.name;
     try{
         if(!name) {
