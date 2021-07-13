@@ -145,8 +145,38 @@ rebuilding the docker container
 login 
 `docker login`
 
+## 1st time pushing
 pushing to the repo
 - first creating the admitable tag for docker hub
 `docker image tag <docker image> <username>/<docker image>`
 - pushing to the docker hub
 `docker push <username>/<docker image>:<docker tag>(optional)`
+
+building image for production for specific service
+`docker-compose -f docker-compose.yml -f docker-compose.prod.yml build <docker container (service)>`
+
+## after 1st time pushing
+`docker-compose -f docker-compose.yml -f docker-compose.prod.yml push <docker container(service)>`
+- it's going to push the image that has been built for that service
+
+pulling the image from the docker hub from the prod server
+`docker-compose -f docker-compose.yml -f docker-compose.prod.yml pull`
+
+# LIFECYCLE OF THE DOCKER CI/CD
+1. step
+- Updating the app localy
+- running `docker-compose -f docker-compose.yml -f docker-compose.prod.yml build (<docker service>)`
+- all images cann be created of specific
+2. step
+- pushing changes to docker hub
+`docker-compose -f docker-compose.yml -f docker-compose.prod.yml push <docker service>`
+- all of the images can be pushed or just specific
+- if docker.compose file is changed -> push to github -> pulling by the prod server
+3. step 
+- pulling changes
+`docker-compose -f docker-compose.yml -f docker-compose.prod.yml pull <docker service>`
+- pulling all services or just specific
+4. step
+- running up the docker compose
+`docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --no-deps <docker service>` -> this command checks for the version of the images, if it's different then it will rebuild the docker container
+- running and rebuilding all services or just those specific ones without deps
