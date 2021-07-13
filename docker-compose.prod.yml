@@ -10,6 +10,16 @@ services:
                 NODE_ENV: production
         environment: 
             - NODE_ENV=production
-        env_file:
-            - ./config/prod.env
+            - PORT=${PORT}
+            - DB_USER=${DB_USER}
+            - DB_PASS=${DB_PASS}
+            - DB_IP=${DB_IP}
+            - DB_PORT=${DB_PORT}
+            - REDIS_URL=${REDIS_URL}
+            - REDIS_PORT=${REDIS_PORT}
+            - REDIS_SECRET=${REDIS_SECRET}
         command: node index.js
+    mongo:
+        environment: 
+            - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+            - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}

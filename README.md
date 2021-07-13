@@ -112,3 +112,24 @@ logging into the mongodb:
 - adding two instances of the node app
 
 `docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --scale <docker container>=2`
+
+# Prod on ubuntu server
+
+creating env variables
+`export <env var name>="<env var value>"`
+
+showing env variables
+`printenv`
+
+creating a file on ubuntu server for env vars
+`vi .env`
+then
+`vi .profile`
+in this file:
+~
+~
+`set -o allexpert; source /root/.env; set +o allexport`
+the last command is gonna loop through the file and export
+all the env vars
+
+
