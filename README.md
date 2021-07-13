@@ -126,10 +126,18 @@ creating a file on ubuntu server for env vars
 then
 `vi .profile`
 in this file:
-~
-~
-`set -o allexpert; source /root/.env; set +o allexport`
+```
+    ~
+    ~
+    set -o allexpert; source /root/.env; set +o allexport
+```
+
 the last command is gonna loop through the file and export
 all the env vars
 
+building docker file only for node-app
+`docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build --no-deps <docker container (service)>`
+
+rebuilding the docker container
+`docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --force-recreate --no-deps <docker container (service)>`
 
