@@ -141,3 +141,12 @@ building docker file only for node-app
 rebuilding the docker container
 `docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --force-recreate --no-deps <docker container (service)>`
 
+# Docker hub
+login 
+`docker login`
+
+pushing to the repo
+- first creating the admitable tag for docker hub
+`docker image tag <docker image> <username>/<docker image>`
+- pushing to the docker hub
+`docker push <username>/<docker image>:<docker tag>(optional)`
