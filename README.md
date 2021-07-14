@@ -155,7 +155,7 @@ pushing to the repo
 building image for production for specific service
 `docker-compose -f docker-compose.yml -f docker-compose.prod.yml build <docker container (service)>`
 
-## after 1st time pushing
+## after 1st time building for prod
 `docker-compose -f docker-compose.yml -f docker-compose.prod.yml push <docker container(service)>`
 - it's going to push the image that has been built for that service
 
@@ -180,3 +180,14 @@ pulling the image from the docker hub from the prod server
 - running up the docker compose
 `docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --no-deps <docker service>` -> this command checks for the version of the images, if it's different then it will rebuild the docker container
 - running and rebuilding all services or just those specific ones without deps
+
+# Automating pulling and building on prod server 
+automating by running the watchtower container
+
+`docker run -d --name wathctower -e WATCHTOWER_LOGS=true -e WATCHTOWER_DEBUG=true -e WATCHTOWER_POLL_INTERVAL=50 -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower <docker-container>`
+
+- shutting down the container
+`docker rm watchtower -f`
+
+- logs and debugs and msgs
+`docker logs watchtower -f`
