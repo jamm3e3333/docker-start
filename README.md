@@ -115,6 +115,16 @@ logging into the mongodb:
 
 # Prod on ubuntu server
 
+installing docker 
+
+1. `curl -fsSL https://get.docker.com -o get-docker.sh`
+2. `sh get-docker.sh`
+
+installing docker compose 
+
+1. `sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`
+2. `sudo chmod +x /usr/local/bin/docker-compose
+`
 creating env variables
 `export <env var name>="<env var value>"`
 
@@ -129,7 +139,7 @@ in this file:
 ```
     ~
     ~
-    set -o allexpert; source /root/.env; set +o allexport
+    set -o allexport; source /root/.env; set +o allexport
 ```
 
 the last command is gonna loop through the file and export
@@ -204,4 +214,24 @@ add a new worker node
 
 add a manager node to the swarm
 `docker swarm join-token manager`
+
+running the docker swarm command afrer pulling the git repo
+
+`docker stack deploy -c docker-compose.yml -c docker-compose.prod.yml <name of the stack>`
+
+listing nodes 
+`docker node ls`
+
+listing stack 
+`docker stack ls`
+
+listing all the services == `docker ps`
+`docker stack services <name of the docker stack>`
+
+listing all the services throughout the system
+`docker service ls`
+
+listing tasks
+`docker stack ps <name of the docker stack>`
+
 
