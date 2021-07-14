@@ -191,3 +191,17 @@ automating by running the watchtower container
 
 - logs and debugs and msgs
 `docker logs watchtower -f`
+
+# Docker Swarm
+docker swarm doesn't work with containers but it works with services
+swarm is unintialized by default
+
+to initialize it 
+`docker swarm init --advertise-addr <ip address of the prod server>`
+
+add a new worker node
+`docker swarm join --token <docker swarm token> <ip addr of the prod server>`
+
+add a manager node to the swarm
+`docker swarm join-token manager`
+
