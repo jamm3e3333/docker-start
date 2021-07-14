@@ -234,4 +234,11 @@ listing all the services throughout the system
 listing tasks
 `docker stack ps <name of the docker stack>`
 
+## Lifecycle
+1. building locally
+`docker-compose -f docker-compose.yml -f docker-compose.prod.yml build <docker service>`
+2. pushing to the docker hub locally
+`docker-compose -f docker-compose.yml -f docker-compose.prod.yml push <docker service>`
+3. deploying services with docker swarm
+`docker stack deploy -c docker-compose.yml -c docker-compose.prod.yml <docker stack name>`
 
