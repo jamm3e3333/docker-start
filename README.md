@@ -234,6 +234,9 @@ listing all the services throughout the system
 listing tasks
 `docker stack ps <name of the docker stack>`
 
+removing the stack
+`docker stack rm <name of the docker stack>`
+
 ## Lifecycle
 1. building locally
 `docker-compose -f docker-compose.yml -f docker-compose.prod.yml build <docker service>`
